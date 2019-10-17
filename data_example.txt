@@ -1,0 +1,1 @@
+{"sender_mail": "DEV_ACCOUNT@gmail.com", "sender_password": "PASSWORD", "receipents": ["XXXX@gmail.com", "YYYY@gmail.com"]}
