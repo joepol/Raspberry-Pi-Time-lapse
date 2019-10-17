@@ -29,12 +29,8 @@ class MailSender:
                 server.sendmail(self.sender_mail, receipent_mail, message)
 
 
-def main():
-    if (len(sys.argv) > 1):
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
         file_name_to_send = sys.argv[1]
     sender = MailSender()
     sender.send_mail()
-
-
-if __name__ == '__main__':
-    main()
