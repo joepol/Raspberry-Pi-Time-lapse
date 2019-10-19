@@ -26,11 +26,16 @@ class MailSender:
         with smtplib.SMTP_SSL(host=smtp_server, port=port, context=context) as server:
             server.login(self.sender_mail, self.sender_password)
             for receipent_mail in self.receipents_mails:
-                server.sendmail(self.sender_mail, receipent_mail, message)
+                try:
+                    server.sendmail(self.sender_mail, receipent_mail, message)
+                except:
+                    print("Failed to send mail")
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        file_name_to_send = sys.argv[1]
     sender = MailSender()
-    sender.send_mail()
+    if len(sys.argv) > 1:
+        specific_message = sys.argv[1]
+        sender.send_mail(message=specific_message)
+    else:
+        sender.send_mail()
