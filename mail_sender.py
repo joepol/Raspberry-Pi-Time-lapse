@@ -1,12 +1,9 @@
-import smtplib
-import ssl
+import yagmail
 import json
 import sys
+import logging
 
-DEFAULT_MESSAGE = """\
-Subject: Timelapse GIF
-
-This message contain an animated GIF of last 24H time lapse."""
+SUBJECT = "Timelapse GIF"
 
 
 class MailSender:
@@ -18,24 +15,29 @@ class MailSender:
             self.sender_password = data['sender_password']
             self.receipents_mails = data['receipents']  # a list of email addresses
 
-    def send_mail(self, message=DEFAULT_MESSAGE):
-        port = 465  # most be this port for SSL
-        smtp_server = "smtp.gmail.com"
+    def send_mail(self, attachment_file_name):
+        # TODO: add current date
+        message_content = "This message contain an animated GIF of last 24H time lapse."
 
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(host=smtp_server, port=port, context=context) as server:
-            server.login(self.sender_mail, self.sender_password)
-            for receipent_mail in self.receipents_mails:
-                try:
-                    server.sendmail(self.sender_mail, receipent_mail, message)
-                except:
-                    print("Failed to send mail")
+        yag = yagmail.SMTP(user=self.sender_mail, password=self.sender_password)
+        for receipent_mail in self.receipents_mails:
+            yag.send(
+                to=receipent_mail,
+                subject=SUBJECT,
+                contents=message_content,
+                attachments=attachment_file_name,  # should be in the format of timelapse_DD_MM_YYYY.gif
+            )
+
+
+def main(file_name):
+    sender = MailSender()
+    sender.send_mail(attachment_file_name=file_name)
 
 
 if __name__ == '__main__':
-    sender = MailSender()
     if len(sys.argv) > 1:
-        specific_message = sys.argv[1]
-        sender.send_mail(message=specific_message)
-    else:
-        sender.send_mail()
+        file_name = sys.argv[1]
+        main(file_name)
+    # TODO : else - log an error
+
+main(file_name='images\\timelapse_25_10_2019.gif')
