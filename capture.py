@@ -2,7 +2,7 @@ import cv2
 import time
 import logging
 
-DEFAULT_DIRECTORY = 'Unknown_directory\\'
+DEFAULT_DIRECTORY = 'temp\\'
 
 logger = logging.getLogger(__name__)
 
