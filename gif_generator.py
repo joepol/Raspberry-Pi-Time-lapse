@@ -27,6 +27,8 @@ def generate_gif(path=DEFAULT_PATH, duration=DEFAULT_DURATION):
     file_names = _get_files_list(path)
     for filename in file_names:
         frames.append(imageio.imread(filename))
+    if not frames:
+        logging.debug("No frames were found in %s", path)
     # dd/mm/YY
     today = date.today().strftime("%d_%m_%Y")
     outfile_name = '{}timelapse_{}.gif'.format(path, today)
