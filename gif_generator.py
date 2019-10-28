@@ -1,9 +1,12 @@
 import os
 import imageio
+import logging
 from datetime import date
 
-DEFAULT_PATH = 'images\\'
+DEFAULT_PATH = 'temp\\'
 DEFAULT_DURATION = 0.2
+
+logger = logging.getLogger(__name__)
 
 
 def _get_files_list(path):
@@ -28,4 +31,7 @@ def generate_gif(path=DEFAULT_PATH, duration=DEFAULT_DURATION):
     today = date.today().strftime("%d_%m_%Y")
     outfile_name = '{}timelapse_{}.gif'.format(path, today)
     imageio.mimsave(outfile_name, frames, format='GIF', duration=duration)
+    file_size = os.stat('./'+str(outfile_name)).st_size
+    logger.info("GIF generated %s, size of %s bytes", outfile_name, file_size)
 
+generate_gif()
