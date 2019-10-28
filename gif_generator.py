@@ -35,5 +35,8 @@ def generate_gif(path=DEFAULT_PATH, duration=DEFAULT_DURATION):
     imageio.mimsave(outfile_name, frames, format='GIF', duration=duration)
     file_size = os.stat('./'+str(outfile_name)).st_size
     logger.info("GIF generated %s, size of %s bytes", outfile_name, file_size)
+    absolute_file_path = os.path.abspath('./'+str(outfile_name))
+    return absolute_file_path
+    # return outfile_name
 
 generate_gif()
