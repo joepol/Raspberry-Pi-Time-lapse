@@ -15,6 +15,7 @@ if not camera.isOpened():
 
 
 def capture(directory=DEFAULT_DIRECTORY):
+    # TODO: sanitize input!
     # camera.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
     # camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
     return_value, image = camera.read()
