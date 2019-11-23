@@ -48,4 +48,4 @@ if __name__ == '__main__':
     else:
         logger.error("Must provide a file name when executing mail sender")
 
-main(file_name='images\\timelapse_25_10_2019.gif')
+# main(file_name='images\\timelapse_25_10_2019.gif')
