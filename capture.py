@@ -2,7 +2,7 @@ import cv2
 import time
 import logging
 
-DEFAULT_DIRECTORY = 'temp\\'
+DEFAULT_PATH = 'temp\\'
 
 logger = logging.getLogger(__name__)
 
@@ -14,12 +14,12 @@ if not camera.isOpened():
     raise Exception("Could not open video device")
 
 
-def capture(directory=DEFAULT_DIRECTORY):
+def capture(path=DEFAULT_PATH):
     # TODO: sanitize input!
     # camera.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
     # camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
     return_value, image = camera.read()
-    image_file_name = directory + "{}.jpeg".format(int(time.time()))
+    image_file_name = path + "{}.jpeg".format(int(time.time()))
     cv2.imwrite(image_file_name, image)
     logger.info("Image captured and saved by the name %s", image_file_name)
 
