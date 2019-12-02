@@ -3,3 +3,20 @@ import yagmail
 import json
 import sys
 import logging
+
+
+
+pip3 install -U opencv-python
+pip3 install numpy
+pip3 install imageio
+pip3 install opencv-contrib-python==3.4.3.18
+
+sudo apt-get install libcblas-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libjasper-dev
+sudo apt-get install libqtgui4
+sudo apt-get install python3-pyqt5
+sudo apt-get install gifsicle
+sudo apt-get install libqt4-test
+sudo apt-get install libhdf5-dev
+sudo apt-get install libhdf5-serial-dev
