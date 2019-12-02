@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 camera_port = 0
-camera = cv2.VideoCapture(camera_port, cv2.CAP_DSHOW)
+camera = cv2.VideoCapture(camera_port)
 if not camera.isOpened():
     logger.critical()
     raise Exception("Could not open video device")
@@ -19,7 +19,7 @@ def capture(path=DEFAULT_PATH):
     # camera.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
     # camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
     return_value, image = camera.read()
-    image_file_name = path + "{}.jpeg".format(int(time.time()))
+    image_file_name = path+ "/" + "{}.jpeg".format(int(time.time()))
     cv2.imwrite(image_file_name, image)
     logger.info("Image captured and saved by the name %s", image_file_name)
 

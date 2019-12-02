@@ -23,11 +23,11 @@ def get_hour_24():
 
 
 def is_time_to_send_gif():
-    return get_hour_24() >= 11
+    return get_hour_24() >= 10
 
 
 def is_high_rate(hour):
-    return 15 < hour < 20
+    return 15 < hour < 18
 
 
 is_gif_sent = False
@@ -52,7 +52,7 @@ while True:
 
     #        Capture image
     # TODO : what about shutdown and restart opencv?
-    directory_path = directory + '\\'
+    directory_path = directory #+ '\\'
     capture.capture(directory_path)
 
     #         Go to sleep
